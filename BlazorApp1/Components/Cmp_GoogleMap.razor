@@ -1,0 +1,34 @@
+﻿
+
+
+
+<div class="google-maps" style=" position: relative;
+    padding-bottom: 75%;
+    overflow: hidden;">
+    <iframe
+        style="border:0;    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;"
+        loading="lazy"
+        allowfullscreen
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAzYRtkwpsloCxCXFnVTxS-roVsd0ecaMA
+        &q=@safeBreweryName">
+    </iframe>
+</div>
+
+@code {
+
+    [Parameter]
+    public string? breweryName { get; set; }
+
+    private string safeBreweryName;
+
+    protected override async Task OnInitializedAsync()
+    {
+        //Sanitize Brewery Names for URL
+        // e.g. Ottos Pub & Brewery
+        safeBreweryName = Uri.EscapeDataString(breweryName);
+    }
+}

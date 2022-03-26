@@ -1,0 +1,70 @@
+﻿@using BreweryProject.API;
+@using BreweryProject.Models;
+
+
+<h1 class="text-center">@startLocation Nearest Breweries</h1>
+    @if (response == false)
+      {
+        <h2 class="text-center">Sorry, we couldn't find any results for @startLocation</h2>
+      }
+
+<div class="container">
+    @if (breweryList.Count == 0 && response == true)
+   {
+       <h1 class="text-center">Loading Breweries...</h1>
+    }
+    else
+    {
+        @foreach (var brewery in breweryList)
+        {
+            <div class="row border p-3 m-3">
+                    <Cmp_BreweryInfo brewery=@brewery StartLocationLat=@StartLocationLat StartLocationLon=@StartLocationLon  />
+                <div class="col">
+                    @if ( !String.IsNullOrEmpty(brewery.Name) )
+                   {
+                    <Cmp_GoogleMap breweryName=@brewery.Name/>
+                   }
+                </div>            
+            </div>
+        }
+    }
+</div>
+
+@code {
+    [Parameter]
+    public StartLocation startLocationGeoInfo { get; set; }    
+
+    [Parameter]
+    public string startLocation { get; set; }
+
+    private double StartLocationLat;
+    private double StartLocationLon;
+
+    List<Brewery> breweryList = new();
+
+    private bool response = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!String.IsNullOrEmpty(startLocation))
+        {
+            startLocationGeoInfo = await GoogleGeocodeAPI.GetLocationInformation(startLocation);
+        }
+
+        //if Google couldn't find any matching locations
+        if (startLocationGeoInfo.Results.Count == 0)
+        {
+            response = false;
+        }
+        //Google found a match
+        else
+        {
+            response = true;
+            
+            StartLocationLat = GoogleGeocodeAPI.GetLat(startLocationGeoInfo);
+            StartLocationLon = GoogleGeocodeAPI.GetLon(startLocationGeoInfo);
+            breweryList = await BreweryAPI.GetBreweryList(StartLocationLat, StartLocationLon); 
+        }
+
+    }
+}

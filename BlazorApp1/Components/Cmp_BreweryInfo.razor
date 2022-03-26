@@ -1,0 +1,32 @@
+﻿@using BreweryProject.API;
+@using BreweryProject.Models;
+
+
+<div class="col">
+
+    <h2>@brewery.Name</h2>
+    <b class="separating-line-primary"></b>
+    <h3>DISTANCE // @brewery.GetDistance(StartLocationLat, StartLocationLon, Double.Parse(brewery.Latitude!), Double.Parse(brewery.Longitude!)) miles</h3>
+
+    @brewery.Street
+    <br>
+    @brewery.City, @brewery.State
+    <br>
+
+    <a href="tel:@brewery.Phone">@brewery.Phone</a>
+    <br>
+
+    <a href="@brewery.WebsiteUrl" target="_blank">@brewery.WebsiteUrl</a>
+
+</div>
+
+@code {
+    [Parameter]
+    public Brewery brewery { get; set; }
+
+    [Parameter]
+    public double StartLocationLat { get; set; }
+
+    [Parameter]
+    public double StartLocationLon { get; set; }
+}

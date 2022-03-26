@@ -1,0 +1,37 @@
+﻿@page "/MoreLists"
+@using BreweryProject.Components;
+
+@*@inject IJSRuntime JSRuntime*@
+
+<PageTitle>@desiredLocation1 and @desiredLocation2 Nearest Breweries</PageTitle>
+
+<div class="">
+    <div class="row">
+        <div class="col-6">
+            <Cmp_BreweryList startLocation=@desiredLocation1   />
+        </div>
+        <div class="col-6">
+            <Cmp_BreweryList startLocation=@desiredLocation2  />
+        </div>
+    </div>
+</div>
+
+@code{
+    private string desiredLocation1 = "Beaver Stadium";
+    private string desiredLocation2 = "Ohio Stadium";
+
+    //  POTENTIAL FUN JS STUFF TO ADD
+
+    //private Task<IJSObjectReference> _module;
+    //private Task<IJSObjectReference> Module => _module ??= JSRuntime.InvokeAsync<IJSObjectReference>("import", "./js/index.js").AsTask();
+
+    //protected override async Task OnAfterRenderAsync(bool firstRender)
+    //{
+    //    if (firstRender)
+    //    {
+    //    var module = await Module;
+    //    await module.InvokeVoidAsync("SayHello");
+    //    }
+    //}
+
+ }
