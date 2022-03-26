@@ -1,2 +1,2 @@
 # BreweryProject
-BreweryProjectm for PSU Tech Interview
+BreweryProject for PSU Tech Interview
