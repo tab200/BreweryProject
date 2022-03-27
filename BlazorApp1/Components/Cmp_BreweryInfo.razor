@@ -6,7 +6,7 @@
 
     <h2>@brewery.Name</h2>
     <b class="separating-line-primary"></b>
-    <h3>DISTANCE // @brewery.GetDistance(StartLocationLat, StartLocationLon, Double.Parse(brewery.Latitude!), Double.Parse(brewery.Longitude!)) miles</h3>
+    <h3>DISTANCE // @distanceFromStartLocation miles</h3>
 
     @brewery.Street
     <br>
@@ -29,4 +29,14 @@
 
     [Parameter]
     public double StartLocationLon { get; set; }
+
+
+    public double distanceFromStartLocation { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        DistanceGetter distanceGetter = new();
+
+        distanceFromStartLocation = distanceGetter.GetDistanceMiles(StartLocationLat, StartLocationLon, Double.Parse(brewery.Latitude!), Double.Parse(brewery.Longitude!));
+    }
 }

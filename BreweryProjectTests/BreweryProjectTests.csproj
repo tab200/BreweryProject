@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BreweryProject\BreweryProject.csproj" />
+    <ProjectReference Include="..\BlazorApp1\BreweryProject.csproj" />
   </ItemGroup>
 
 </Project>
