@@ -1,7 +1,6 @@
 ﻿@using BreweryProject.API;
 @using BreweryProject.Models;
 
-
 <h1 class="text-center">@startLocation Nearest Breweries</h1>
     @if (response == false)
       {
@@ -31,11 +30,11 @@
 </div>
 
 @code {
-    [Parameter]
-    public StartLocation startLocationGeoInfo { get; set; }    
 
     [Parameter]
     public string startLocation { get; set; }
+
+    public StartLocation startLocationGeoInfo { get; set; }    
 
     private double StartLocationLat;
     private double StartLocationLon;

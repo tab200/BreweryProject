@@ -1,27 +1,10 @@
 ﻿@page "/"
 @using BreweryProject.Components;
 
-@*@inject IJSRuntime JSRuntime*@
-
 <PageTitle>@desiredLocation Nearest Breweries</PageTitle>
 
 <Cmp_BreweryList startLocation=@desiredLocation   />
 
 @code{
     private string desiredLocation = "Beaver Stadium";
-
-    //  POTENTIAL FUN JS STUFF TO ADD
-
-    //private Task<IJSObjectReference> _module;
-    //private Task<IJSObjectReference> Module => _module ??= JSRuntime.InvokeAsync<IJSObjectReference>("import", "./js/index.js").AsTask();
-
-    //protected override async Task OnAfterRenderAsync(bool firstRender)
-    //{
-    //    if (firstRender)
-    //    {
-    //    var module = await Module;
-    //    await module.InvokeVoidAsync("SayHello");
-    //    }
-    //}
-
  }
